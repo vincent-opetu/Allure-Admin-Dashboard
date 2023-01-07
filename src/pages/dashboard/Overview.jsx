@@ -8,6 +8,8 @@ import { BsCart2 } from 'react-icons/bs'
 import { RxCodesandboxLogo } from 'react-icons/rx'
 import { HiOutlineUsers } from 'react-icons/hi'
 import { RiMoneyDollarCircleLine } from 'react-icons/ri'
+import Chart from '../../components/chart/Chart';
+import { userData } from '../../dummyData';
 
 function Overview() {
 
@@ -37,6 +39,10 @@ function Overview() {
                 <Card001 icon={<RxCodesandboxLogo className='w-7 h-7 text-[#53237C]'/>} title="Products" amount="3150" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
                 <Card001 icon={<HiOutlineUsers className='w-7 h-7 text-[#53237C]'/>} title="Users" amount="145" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
                 <Card001 icon={<RiMoneyDollarCircleLine className='w-7 h-7 text-[#53237C]'/>} title="Sales" amount="200" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
+            </div>
+
+            <div className='pt-10'>
+              <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
             </div>
 
           </div>

@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import NotFound from './pages/NotFound';
 import Overview from './pages/dashboard/Overview';
 import Login from './pages/Login';
+import ProductsList from './pages/dashboard/ProductsList';
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Login />} />
       <Route exact path="/overview" element={<Overview />} />
+      <Route exact path="/products" element={<ProductsList />} />
       <Route exact path="*" element={<NotFound />} />
     </Routes>
   );
