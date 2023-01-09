@@ -4,13 +4,26 @@ import LabelField from "./LabelField"
 import Button from "./Button"
 import { Logo2 } from "./Logo"
 import { Link } from 'react-router-dom'
+import { adminLogin } from "../redux/apiCalls.js/user.js"
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const LoginForm = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const user = useSelector(state => state.user?.currentUser)
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const handleLogin = (e) => {
         e.preventDefault();
+        adminLogin(dispatch, { email, password })
+        if (user?.success === 1) {
+            navigate("/overview")
+            toast.success("Login successfull")
+        }
     }
 
     return (

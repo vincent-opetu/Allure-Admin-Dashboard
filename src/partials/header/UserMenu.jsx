@@ -5,7 +5,7 @@ import Transition from '../../utils/Transition';
 // import axiosInstance from '../../axiosConfig';
 // import { getToken } from '../../features/user/tokenSlice';
 
-function UserMenu() {
+function UserMenu({handleLogout}) {
 
 //   const dispatch = useDispatch();
 
@@ -109,6 +109,7 @@ function UserMenu() {
             <li>
               <button
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+                onClick={handleLogout}
               >
                 Log Out
               </button>

@@ -2,12 +2,26 @@ import React from 'react';
 // import SearchModal from '../partials/header/SearchModal';
 import Notifications from '../partials/header/Notifications';
 import UserMenu from './header/UserMenu';
-import { FiSearch } from 'react-icons/fi'
+// import { FiSearch } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux';
+import { adminLogout } from '../redux/apiCalls.js/user';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 
 function Header({
   sidebarOpen,
-  setSidebarOpen, username, logout
+  setSidebarOpen, username, logout, title
 }) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const userEmail = useSelector(state => state.user?.currentUser?.email)
+
+  const handleLogout = () => {
+     adminLogout(dispatch, userEmail)
+     navigate("/")
+     toast.success("Logout successfull")
+  }
 
   // const [searchModalOpen, setSearchModalOpen] = useState(false)
 
@@ -38,14 +52,9 @@ function Header({
                   <label for="simple-search" class="sr-only">Search</label>
                   <div class="relative w-full">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <FiSearch className="w-5 h-5 text-gray-500"/>
+                          <h2 className='text-2xl font-light'>{title}</h2>
                       </div>
-                      <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search Appointment, Patients, File, Staff etc" required />
                   </div>
-                  {/* <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white rounded-lg border focus:ring-4 focus:outline-none focus:ring-blue-300">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                      <span class="sr-only">Search</span>
-                  </button> */}
               </div>
             </div>
 
@@ -56,7 +65,7 @@ function Header({
             <Notifications />
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
-            <UserMenu username={username} logout={logout}/>
+            <UserMenu username={username} handleLogout={handleLogout}/>
 
           </div>
 

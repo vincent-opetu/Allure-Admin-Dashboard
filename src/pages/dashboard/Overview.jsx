@@ -10,8 +10,11 @@ import { HiOutlineUsers } from 'react-icons/hi'
 import { RiMoneyDollarCircleLine } from 'react-icons/ri'
 import Chart from '../../components/chart/Chart';
 import { userData } from '../../dummyData';
+import { useSelector } from 'react-redux';
 
 function Overview() {
+
+  const productsCount = useSelector(state => state.products?.productsList)
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -36,7 +39,7 @@ function Overview() {
             {/* Cards */}
             <div className="grid grid-cols-4 gap-6">
                 <Card001 icon={<BsCart2 className='w-7 h-7 text-[#53237C]'/>} title="Orders" amount="10" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
-                <Card001 icon={<RxCodesandboxLogo className='w-7 h-7 text-[#53237C]'/>} title="Products" amount="3150" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
+                <Card001 icon={<RxCodesandboxLogo className='w-7 h-7 text-[#53237C]'/>} title="Products" amount={productsCount?.length} perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
                 <Card001 icon={<HiOutlineUsers className='w-7 h-7 text-[#53237C]'/>} title="Users" amount="145" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
                 <Card001 icon={<RiMoneyDollarCircleLine className='w-7 h-7 text-[#53237C]'/>} title="Sales" amount="200" perc="4.5" bgColor="bg-[#EEEAF2]" brdColor="border-[#BAA7CB]" prColor='#53237C'/>
             </div>

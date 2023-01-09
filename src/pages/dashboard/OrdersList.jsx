@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import { DataGrid } from '@mui/x-data-grid';
+import { useDispatch, useSelector } from 'react-redux'
+import { getOrders } from '../../redux/apiCalls.js/orders';
 
 import { productRows } from '../../dummyData';
 
@@ -11,6 +13,15 @@ import { productRows } from '../../dummyData';
 function OrdersList() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const allOrders = useSelector(state => state.orders.ordersList)
+  console.log('Orders', allOrders)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    getOrders(dispatch)
+  }, [dispatch])
+
 
   const columns = [
     { field: "id", headerName: "ID", width: 220 },
@@ -57,7 +68,7 @@ function OrdersList() {
   ];
 
   return (
-    <div className="flex h-screen overflow-hidden bg-pink-400 bg-opacity-10">
+    <div className="flex h-screen overflow-hidden bg-gray-900 bg-opacity-40">
 
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
@@ -66,7 +77,7 @@ function OrdersList() {
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} username='Admin'/>
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} username='Admin' title="Orders"/>
 
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
