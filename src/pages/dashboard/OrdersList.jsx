@@ -8,7 +8,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { productRows } from '../../dummyData';
 
 
-function ProductsList() {
+function OrdersList() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -89,4 +89,4 @@ function ProductsList() {
   );
 }
 
-export default ProductsList;
+export default OrdersList;
