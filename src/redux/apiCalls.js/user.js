@@ -15,7 +15,7 @@ export const adminLogin = async (dispatch, user) => {
 
 export const adminLogout = async (dispatch, email) => {
     try {
-       await userRequest.post('/users/logout', email)
+       await userRequest.post('/users/logout', {email: email})
        dispatch(logoutStart())
     } catch (err) {
         console.log(err.message)

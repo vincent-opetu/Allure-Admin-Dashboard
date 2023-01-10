@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Header({
   sidebarOpen,
-  setSidebarOpen, username, logout, title
+  setSidebarOpen, username, title
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -65,7 +65,7 @@ function Header({
             <Notifications />
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
-            <UserMenu username={username} handleLogout={handleLogout}/>
+            <UserMenu username={username} handleLogout={() => handleLogout()}/>
 
           </div>
 

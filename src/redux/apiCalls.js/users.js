@@ -17,8 +17,8 @@ export const getUsers = async (dispatch) => {
 
     try {
         const res = await userRequest.get('/users')
-        console.log("Users", res)
-        // dispatch(usersSuccess())
+        // console.log("Users", res.data)
+        dispatch(usersSuccess(res.data))
     } catch (err) {
         dispatch(usersFailure())
     }

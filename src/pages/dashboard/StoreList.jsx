@@ -5,44 +5,34 @@ import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux'
-import { productRows } from '../../dummyData';
-import { getUsers } from '../../redux/apiCalls.js/users';
+import { fetchStores } from '../../redux/apiCalls.js/store';
 
 
-function UsersList() {
+function StoreList() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const dispatch = useDispatch()
+  const allStores = useSelector(state => state.stores.storeList)
   
   useEffect(() => {
-    getUsers(dispatch)
+    fetchStores(dispatch)
   }, [dispatch])
-  
-  const allUsers = useSelector(state => state.users.usersList)
-  console.log("Users", allUsers)
+
 
   const columns = [
-    { field: "id", headerName: "ID", width: 220 },
+    { field: "_id", headerName: "ID", width: 200 },
     {
       field: "name",
-      headerName: "Product",
-      width: 200,
+      headerName: "Name",
+      width: 250,
       renderCell: (params) => {
         return (
-          <div className="flex items-center space-x-3">
-            <img className="w-8 h-8 rounded-full" src={params.row.img} alt="" />
-            <p>{params.row.name}</p>
-          </div>
+          <p>{params.row.name}</p>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160,
-    },
+    { field: "status", headerName: "Status", width: 200 },
     {
       field: "action",
       headerName: "Action",
@@ -50,10 +40,10 @@ function UsersList() {
       renderCell: (params) => {
         return (
           <div className='flex space-x-3'>
-            <Link to={"/products/" + params.row.id}>
+            <Link to={"/stores/" + params.row._id}>
               <button className="px-4 py-1 bg-blue-500 font-normal text-xs rounded-md text-white">Edit</button>
             </Link>
-            <Link to={"/products/" + params.row.id}>
+            <Link to={"/stores/" + params.row._id}>
               <button className="px-4 py-1 bg-red-500 font-normal text-xs rounded-md text-white">Delete</button>
             </Link>
             {/* <DeleteOutline
@@ -76,17 +66,17 @@ function UsersList() {
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} username='Admin' title="Users"/>
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} username='Admin' title="Store List"/>
 
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
-            <div className='pt-10 w-full h-full bg-white px-4 pb-4 rounded-md font-light'>
+            <div className='pt-10 w-full h-full bg-white px-4 pb-4 rounded-md font-mulish'>
               <DataGrid
-                rows={productRows}
+                rows={allStores}
                 disableSelectionOnClick
                 columns={columns}
-                getRowId={(row) => row.id}
+                getRowId={(row) => row._id}
                 autoHeight={true}
                 checkboxSelection
               />
@@ -99,4 +89,4 @@ function UsersList() {
   );
 }
 
-export default UsersList;
+export default StoreList;

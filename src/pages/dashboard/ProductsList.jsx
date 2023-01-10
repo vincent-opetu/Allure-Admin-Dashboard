@@ -45,10 +45,10 @@ function ProductsList() {
       renderCell: (params) => {
         return (
           <div className='flex space-x-3'>
-            <Link to={"/product/" + params.row._id}>
+            <Link to={"/products/" + params.row._id}>
               <button className="px-4 py-1 bg-blue-500 font-normal text-xs rounded-md text-white">Edit</button>
             </Link>
-            <Link to={"/product/" + params.row._id}>
+            <Link to={"/products/" + params.row._id}>
               <button className="px-4 py-1 bg-red-500 font-normal text-xs rounded-md text-white">Delete</button>
             </Link>
             {/* <DeleteOutline

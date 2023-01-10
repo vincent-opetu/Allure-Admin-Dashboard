@@ -6,6 +6,9 @@ import Login from './pages/Login';
 import ProductsList from './pages/dashboard/ProductsList';
 import OrdersList from './pages/dashboard/OrdersList';
 import UsersList from './pages/dashboard/UsersList';
+import Product  from './pages/dashboard/Product'
+import StoreList from './pages/dashboard/StoreList';
+import Store from './pages/dashboard/Store';
 
 function App() {
   const location = useLocation();
@@ -21,8 +24,11 @@ function App() {
       <Route exact path="/" element={<Login />} />
       <Route exact path="/overview" element={<Overview />} />
       <Route exact path="/products" element={<ProductsList />} />
+      <Route exact path="/products/:productId" element={<Product />} />
       <Route exact path="/orders" element={<OrdersList />} />
       <Route exact path="/users" element={<UsersList />} />
+      <Route exact path="/stores" element={<StoreList />} />
+      <Route exact path="/stores/:storeId" element={<Store />} />
       <Route exact path="*" element={<NotFound />} />
     </Routes>
   );

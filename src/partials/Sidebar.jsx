@@ -5,11 +5,13 @@ import { HiOutlineHome, HiOutlineUsers } from 'react-icons/hi'
 import { RxCodesandboxLogo } from 'react-icons/rx'
 import { BiReceipt } from 'react-icons/bi'
 import { BsCart2 } from 'react-icons/bs'
+import { MdStorefront } from 'react-icons/md'
 
 function Sidebar({sidebarOpen,setSidebarOpen}) {
 
   const location = useLocation();
   const { pathname } = location;
+  const id = pathname.split('/')[2]
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
@@ -113,11 +115,11 @@ function Sidebar({sidebarOpen,setSidebarOpen}) {
                 </NavLink>
               </li>
               {/* Products */}
-              <li className={`px-3 py-3 rounded-xl flex justify-center mb-0.5 last:mb-0 ${pathname === '/products' && 'bg-[#CB2BCB]'}`}>
-                <NavLink end to="/products" className={`block text-slate-800 hover:text-gray-500 truncate transition duration-150 ${pathname === '/products' && '!text-slate-200'}`}>
+              <li className={`px-3 py-3 rounded-xl flex justify-center mb-0.5 last:mb-0 ${pathname === '/products' && 'bg-[#CB2BCB]'} ${pathname === `/products/${id}` && 'bg-[#CB2BCB]'}`}>
+                <NavLink end to="/products" className={`block text-slate-800 hover:text-gray-500 truncate transition duration-150 ${pathname === '/products' && '!text-slate-200'} ${pathname === `/products/${id}` && '!text-slate-200'}`}>
                     <div className="w-36">
                         <div className="flex items-center">
-                            <RxCodesandboxLogo className={`shrink-0 w-7 h-6 text-slate-800 ${pathname === '/products' && '!text-slate-200 !'}`}/>
+                            <RxCodesandboxLogo className={`shrink-0 w-7 h-6 text-slate-800 ${pathname === '/products' && '!text-slate-200'} ${pathname === `/products/${id}` && '!text-slate-200'}`}/>
                             <span className="text-base font-normal ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Products</span>
                         </div>
                     </div>
@@ -130,6 +132,17 @@ function Sidebar({sidebarOpen,setSidebarOpen}) {
                         <div className="flex items-center">
                             <HiOutlineUsers className={`shrink-0 w-7 h-6 text-slate-800 ${pathname === '/users' && '!text-slate-200 !'}`}/>
                             <span className="text-base font-normal ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Users</span>
+                        </div>
+                    </div>
+                </NavLink>
+              </li>
+              {/* Stores */}
+              <li className={`px-3 py-3 rounded-xl flex justify-center mb-0.5 last:mb-0 ${pathname === '/stores' && 'bg-[#CB2BCB]'} ${pathname === `/stores/${id}` && 'bg-[#CB2BCB]'}`}>
+                <NavLink end to="/stores" className={`block text-slate-800 hover:text-gray-500 truncate transition duration-150 ${pathname === '/stores' && '!text-slate-200'} ${pathname === `/stores/${id}` && '!text-slate-200'}`}>
+                    <div className="w-36">
+                        <div className="flex items-center">
+                            <MdStorefront className={`shrink-0 w-7 h-6 text-slate-800 ${pathname === '/stores' && '!text-slate-200 !'} ${pathname === `/stores/${id}` && '!text-slate-200 !'}`}/>
+                            <span className="text-base font-normal ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Stores</span>
                         </div>
                     </div>
                 </NavLink>
